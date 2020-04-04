@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
-
+{% set active_page ='home' %}
 {% block content %}
-    <h1>I am home</h1>
+    <h1> Wstęp </h1>
+
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<div class="panel panel-default">
+  <div class="panel-heading">
+
+      <div class="panel-body">
+          <p>
+         Szanowni Państwo,
+        Jesteśmy studentami Inżynierii Biomedycznej na wydziale Elektroniki, Telekomunikacji i Informatyki Politechniki Gdańskiej. W ramach projektu studenckiego, chcielibyśmy zachęcić Państwa do wypełnienia stworzonej przez nas ankiety, której celem jest zgromadzenie informacji na temat gotowości społeczeństwa na innowacje technologiczne w medycynie. Pytania dotyczą m.in. postrzegania wykorzystania robotów w medycynie oraz świadczenia usług w ramach telemedycyny.
+        Ankieta jest całkowicie anonimowa, a jej wypełnienie zajmie Państwu kilka minut.
+        Dziękujemy za poświęcony czas! :)
+        Prosimy o wybranie poniżej opcji “pacjent” lub “lekarz” - pytania są dostosowane do wybranej grupy.
+          </p>
+        </div>
+  </div>
+      <form  action="{{ url_for('patient') }}">
+        <input class="btn btn-primary" type="submit" value="Pacjent">
+          <p></p>
+      </form>
+      <form  action="{{ url_for('doctor') }}">
+        <input class="btn btn-primary " type="submit" value="Lekarz">
+      </form>
+
+</div>
+
 {% endblock %}

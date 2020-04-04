@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% set active_page = 'doctor' %}
+{% block title %} {% endblock %}
+
+{% block content %}
+<form method="POST" action="{{ url_for('patient') }}">
+  <div class="form-group">
+    <label>Płeć</label>
+        <select class="form-control">
+            <option>Mężczyzna</option>
+            <option>Kobieta</option>
+        </select>
+      <label>Wiek</label>
+         <select class="form-control">
+            <option>18-40</option>
+            <option>40-60</option>
+            <option><60</option>
+          </select>
+      <label>Wielkość miasta(w tysiącach)</label>
+        <select class="form-control">
+            <option>10</option>
+            <option>10-100</option>
+            <option>100-500</option>
+            <option>500</option>
+        </select>
+  </div>
+    <button type="submit" class="btn btn-primary">Przejdź dalej</button>
+</form>
+
+{% endblock %}

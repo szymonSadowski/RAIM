@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% set active_page = 'patient' %}
+{% block title %} {% endblock %}
+
+{% block content %}
+<form method="POST" action="{{ url_for('patient_record') }}">
+  <div class="form-group">
+      <label>Czy w ostatnim czasie {{gender}} lub ktoś z bliskiej rodziny wymagał hospitalizacji?</label>
+        <select name="hospitalization" class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
+      <label>Czy przyjmuje {{gender}} leki na stałe?</label>
+        <select name="drugs" class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
+      <label>Czy {{have}} {{gender}} w ostatnich 10 latach jakiś zabieg operacyjny?</label>
+        <select name="operation" class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
+      <label>Korzysta {{gender}} z prywatnej czy publicznej służby zdrowia?</label>
+        <select name="health_service" class="form-control">
+            <option value="private">Prywatna</option>
+            <option value="public">Publiczna</option>
+        </select>
+      <label>Czy {{subject}} się {{gender}} operacji chirurgicznej przeprowadzonej przez robota</label>
+        <select name="operation_robot" class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
+  </div>
+    <button type="submit" class="btn btn-primary" action="{{url_for('home')}}">Przejdź dalej</button>
+</form>
+
+
+{% endblock %}

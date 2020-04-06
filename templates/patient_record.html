@@ -30,8 +30,29 @@
             <option value="yes">Tak</option>
             <option value="no">Nie</option>
         </select>
+       <label>Na jakie czynności wykonywane przez robota {{subject2}} {{gender}} zgodę?(Pytanie wielokrotnego wyboru)</label>
+        <select name="activities_robot" multiple class="form-control">
+            <option value="interview">Przeprowadzenie wywiadu przed rozpoczęciem leczenia</option>
+            <option value="cosultation">Konsultacja diagnozy z lekarzem</option>
+            <option value="survey">Wykonanie badań na zlecenie robota i sugerowanie leczenia</option>
+            <option value="non_invasive">Zabiegi nieinwazyjne</option>
+            <option value="mini_surgery">Drobne zabiegi chirurgiczne (np. zaszycie rany)</option>
+            <option value="surgery">Poważne operacje (np. operacja serca, usunięcie guza)</option>
+            <option value="none">Żadne z powyższych</option>
+        </select>
+       <label>Czy uważa {{gender}}, że korzystanie z nowych technologii (np. robotów) działa na niekorzyść
+          w postrzeganiu lekarzy i ich kompetencji?</label>
+        <select name="disadvantage" class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
+      <label>Czy {{subject3}} {{gender}} z usług telemedycyny?</label>
+        <select name="telemedicine" class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
   </div>
-    <button type="submit" class="btn btn-primary" action="{{url_for('home')}}">Przejdź dalej</button>
+    <button type="submit" class="btn btn-primary">Przejdź dalej</button>
 </form>
 
 

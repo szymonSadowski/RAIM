@@ -2,7 +2,6 @@ from flask import (Flask, render_template, abort, jsonify, request,
                    redirect, url_for,g)
 import sqlite3
 
-
 app = Flask(__name__)
 @app.route("/",methods=["GET", "POST"])
 def home():
@@ -36,7 +35,10 @@ def patient():
 def patient_record():
     conn = get_db()
     c = conn.cursor()
+    gender = get_gender()
+
     if request.method == "POST":
+
         c.execute("""INSERT INTO patient_record
                                (hospitalization, drugs, operation, health_service, operation_robot, activities_robot, 
                                disadvantage, telemedicine)
@@ -47,7 +49,7 @@ def patient_record():
                       request.form.get("operation"),
                       request.form.get("health_service"),
                       request.form.get("operation_robot"),
-                      request.form.get("activities_robot"),
+                      multiple(request.form.getlist("activities_robot")),
                       request.form.get("disadvantage"),
                       request.form.get("telemedicine")
                 )
@@ -59,25 +61,10 @@ def patient_record():
         else:
             return redirect(url_for("home"))
 
-    items_from_db = c.execute("""SELECT 
-                    i.id, i.gender
-                    FROM
-                    respondent AS i
-                    ORDER BY i.id DESC LIMIT 1
-    """)
-    respondent = []
-    for row in items_from_db:
-        respondent = {
-            "id": row[0],
-            "gender": row[1],
-        }
-        print(respondent)
-        gender=row[1]
-        if gender == "male":
-            return render_template("patient_record.html",gender="Pan",have="miał",subject="poddałby",subject2="wyraziłby",subject3="korzystał")
-        elif gender =="female":
-            return render_template("patient_record.html",gender="Pani",have="miała",subject="poddałaby",subject2="wyraziłaby",subject4="korzystała")
-
+    if gender == "male":
+        return render_template("patient_record.html",gender="Pan",have="miał",subject="poddałby",subject2="wyraziłby",subject3="korzystał")
+    elif gender =="female":
+        return render_template("patient_record.html",gender="Pani",have="miała",subject="poddałaby",subject2="wyraziłaby",subject4="korzystała")
 
     return render_template("patient_record.html")
 
@@ -86,6 +73,7 @@ def patient_topic():
     conn = get_db()
     c = conn.cursor()
     id = get_id()
+    gender = get_gender()
     if request.method == "POST":
 
         c.execute("""INSERT INTO patient_topic
@@ -93,8 +81,8 @@ def patient_topic():
                                respondent_id)
                                    VALUES (?,?,?,?,?,?,?)""",
                 (
-                      request.form.get("type_telemedicine"),
-                      request.form.get("how_telemedicine"),
+                      multiple(request.form.getlist("type_telemedicine")),
+                      multiple(request.form.getlist("how_telemedicine")),
                       request.form.get("test_results"),
                       request.form.get("visit"),
                       request.form.get("computer"),
@@ -103,30 +91,46 @@ def patient_topic():
                 )
         )
         conn.commit()
-    items_from_db = c.execute("""SELECT 
-                       i.id, i.gender
-                       FROM
-                       respondent AS i
-                       ORDER BY i.id DESC LIMIT 1
-       """)
-    respondent = []
-    for row in items_from_db:
-        respondent = {
-            "id": row[0],
-            "gender": row[1],
-        }
-        print(respondent)
-        gender = row[1]
-        respondent_id=row[0]
-        if gender == "male":
-            return render_template("patient_topic.html", gender="Pan", have="miał", subject="poddałby",
+        if request.form.get("attitude") == "like" or request.form.get("attitude") == "concerns":
+            return redirect(url_for("patient_end"))
+        else:
+            return redirect(url_for("home"))
+    if gender == "male":
+        return render_template("patient_topic.html", gender="Pan", have="miał", subject="poddałby",
                                    subject2="wyraziłby", subject3="korzystał")
-        elif gender == "female":
-            return render_template("patient_topic.html", gender="Pani", have="miała", subject="poddałaby",
+    elif gender == "female":
+        return render_template("patient_topic.html", gender="Pani", have="miała", subject="poddałaby",
                                    subject2="wyraziłaby", subject4="korzystała")
 
-
     return redirect(url_for("home"))
+
+
+@app.route("/patient_end", methods=["GET" , "POST"])
+def patient_end():
+    conn = get_db()
+    c = conn.cursor()
+    id = get_id()
+    gender = get_gender()
+
+    if request.method == "POST":
+        c.execute("""INSERT INTO patient_end
+                               (why, respondent_id)
+                                   VALUES (?,?)""",
+                (
+                      multiple(request.form.getlist("why")),
+                      id
+                )
+        )
+        conn.commit()
+        return redirect(url_for("home"))
+    if gender == "male":
+        return render_template("patient_end.html", gender="Pan", have="miał", subject="poddałby",
+                                   subject2="wyraziłby", subject3="korzystał", subject5="zdecydował")
+    elif gender == "female":
+         return render_template("patient_end.html", gender="Pani", have="miała", subject="poddałaby",
+                                   subject2="wyraziłaby", subject4="korzystała", subject5="zdecydowała")
+
+    return render_template("patient_record.html")
 
 @app.route("/doctor", methods=["GET", "POST"])
 def doctor():
@@ -164,6 +168,31 @@ def get_id():
 
     respondent_id = row[0]
     return respondent_id
+
+def get_gender():
+    conn = get_db()
+    c = conn.cursor()
+    items_from_db = c.execute("""SELECT 
+                       i.id, i.gender
+                       FROM
+                       respondent AS i
+                       ORDER BY i.id DESC LIMIT 1
+       """)
+    for row in items_from_db:
+        respondent = {
+            "id": row[0],
+            "gender": row[1],
+        }
+
+    gender = row[1]
+    return gender
+
+def multiple(list):
+    str = ""
+    for answers in list:
+        str = str + ", " + answers
+
+    return str
 
 @app.teardown_appcontext
 def close_connection(exception):

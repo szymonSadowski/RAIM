@@ -8,6 +8,7 @@ c = conn.cursor()
 c.execute("DROP TABLE IF EXISTS respondent")
 c.execute("DROP TABLE IF EXISTS patient_record")
 c.execute("DROP TABLE IF EXISTS patient_topic")
+c.execute("DROP TABLE IF EXISTS patient_end")
 
 c.execute("""CREATE TABLE respondent(
                     id              INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -64,6 +65,21 @@ patient_topic = [
 c.executemany("INSERT INTO patient_topic (type_telemedicine, how_telemedicine, test_results, visit, computer,"
               " attitude, respondent_id)"
               " VALUES (?,?,?,?,?,?,?)", patient_topic)
+
+c.execute("""CREATE TABLE patient_end(
+                    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+                    why         TEXT,
+                    respondent_id INTEGER,
+                    FOREIGN KEY(respondent_id) REFERENCES respondent(id)
+)""")
+
+patient_end = [
+    ("trust",1)
+
+]
+c.executemany("INSERT INTO patient_end (why, respondent_id)"
+              " VALUES (?,?)", patient_end)
+
 
 conn.commit()
 conn.close()

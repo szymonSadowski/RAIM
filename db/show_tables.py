@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 db_abs_path = os.path.dirname(os.path.realpath(__file__)) + '/raim.db'
-print("Options: (respondent, patient_record, patient_topic,  all)")
+print("Options: (respondent, patient_record, patient_topic, patient_end,  all)")
 
 table = input("Show table: ")
 
@@ -83,6 +83,24 @@ def show_patientTopic():
         print("Something went wrong, please run db_init.py to initialize the database.")
         conn.close()
 
+def show_patientEnd():
+    try:
+        respondent = c.execute("""SELECT
+                                    c.id, c.why, c.respondent_id
+                                 FROM
+                                    patient_end AS c        
+        """)
+
+        print("COMMENTS")
+        print("#############")
+        for row in respondent:
+            print("ID:             ", row[0]),
+            print("Why:        ",  row[1]),
+            print("Respondent Id:           ",  row[2]),
+            print("\n")
+    except:
+        print("Something went wrong, please run db_init.py to initialize the database.")
+        conn.close()
 
 if table == "respondent":
     show_respondent()
@@ -90,10 +108,13 @@ elif table == "patient_record":
     show_patientRecord()
 elif table == "patient_topic":
     show_patientTopic()
+elif table == "patient_topic":
+    show_patientEnd()
 elif table == "all":
     show_respondent()
     show_patientRecord()
     show_patientTopic()
+    show_patientEnd()
 else:
     print("This option does not exist.")
 

@@ -1,30 +1,36 @@
 {% extends 'base.html' %}
-{% set active_page = 'doctor' %}
+{% set active_page = 'ankieta' %}
 {% block title %} {% endblock %}
 
 {% block content %}
-<form method="POST" action="{{ url_for('patient') }}">
+<form method="POST" action="{{ url_for('doctor') }}">
   <div class="form-group">
     <label>Płeć</label>
-        <select class="form-control">
-            <option>Mężczyzna</option>
-            <option>Kobieta</option>
+        <select name="gender" class="form-control">
+            <option value="male">Mężczyzna</option>
+            <option value="female">Kobieta</option>
         </select>
       <label>Wiek</label>
-         <select class="form-control">
-            <option>18-40</option>
-            <option>40-60</option>
-            <option><60</option>
+         <select name="age" class="form-control">
+            <option value="18-40">18-40</option>
+            <option value="40-60">40-60</option>
+            <option value="60over">>60</option>
           </select>
-      <label>Wielkość miasta(w tysiącach)</label>
-        <select class="form-control">
-            <option>10</option>
-            <option>10-100</option>
-            <option>100-500</option>
-            <option>500</option>
+      <label>Liczba ludności miasta (w tysiącach)</label>
+        <select name="city" class="form-control">
+            <option value="less10"><10</option>
+            <option value="10-100">10-100</option>
+            <option value="100-500">100-500</option>
+            <option value="over500">>500</option>
+        </select>
+      <label>Poglądy polityczne</label>
+        <select name="politics" class="form-control">
+            <option value="center">Center</option>
+            <option value="left">Lewica</option>
+            <option value="right">Prawica</option>
         </select>
   </div>
-    <button type="submit" class="btn btn-primary">Przejdź dalej</button>
+    <button type="submit" class="btn btn-primary" action="{{url_for('doctor_record')}}">Przejdź dalej</button>
 </form>
 
 {% endblock %}

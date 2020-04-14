@@ -24,17 +24,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item {{ 'active' if active_page == 'home' else '' }}">
+        <li class="nav-item {{ 'active' if active_page == 'home' else '' }}">
             <a href="{{ url_for('home') }}" class="nav-link">Home</a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">Wyniki?</a>
+          <li class="nav-item {{ 'active' if active_page == 'ankieta' else '' }}">
+            <a  class="nav-link">Ankieta</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-
   <div class="container">
   {% block content %}{% endblock %}
 

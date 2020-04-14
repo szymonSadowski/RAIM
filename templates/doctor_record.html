@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% set active_page = 'ankieta' %}
+{% block title %} {% endblock %}
+
+{% block content %}
+ {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class = flashes>
+      {% for message in messages %}
+          <div class="alert alert-warning alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              {{message}}
+          </div>
+      {% endfor %}
+    </ul>
+    {% endif %}
+ {% endwith %}
+<form method="POST" action="{{ url_for('doctor_record') }}">
+  <div class="form-group">
+    <label>W jakich czynnościach mógłby wyręczyć {{gender}} robot?  (Pytanie wielokrotnego wyboru)</label>
+        <select name="activities_robot" multiple class="form-control">
+            <option value="interview">Przeprowadzenie wywiadu przed rozpoczęciem leczenia</option>
+            <option value="cosultation">Konsultacja diagnozy z lekarzem</option>
+            <option value="survey">Wykonanie badań na zlecenie robota i sugerowanie leczenia</option>
+            <option value="non_invasive">Zabiegi nieinwazyjne</option>
+            <option value="mini_surgery">Drobne zabiegi chirurgiczne (np. zaszycie rany)</option>
+            <option value="surgery">Poważne operacje (np. operacja serca, usunięcie guza)</option>
+            <option value="none">Żadne z powyższych</option>
+        </select>
+    <label>Czy {{subject}} {{gender}} komputerowi do dozowania leków?</label>
+        <select name="computer" class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
+    <label>Czy uważa {{gender}}, że korzystanie z nowych technologii (np. robotów) działa na niekorzyść
+          w postrzeganiu lekarzy i ich kompetencji?</label>
+        <select name="disadvantage" class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
+    <label>Czy czuje się {{gender}} {{subject2}} w związku z posiadaniem mniejszej ilości pracy przez
+            wprowadzanie nowych technologii (np. zastępowanie pracy lekarza pracą robota)?</label>
+        <select name="job" class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
+    <label>Czy {{subject3}} {{gender}} z usług telemedycyny?</label>
+        <select name="telemedicine" class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
+  </div>
+    <button type="submit" class="btn btn-primary" action="{{url_for('doctor_topic')}}">Przejdź dalej</button> <!--czy to jest potrzebne?-!>
+</form>
+
+{% endblock %}

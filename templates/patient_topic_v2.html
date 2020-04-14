@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% set active_page = 'ankieta' %}
+{% block title %} {% endblock %}
+
+{% block content %}
+<form method="POST" action="{{ url_for('patient_topic_v2') }}">
+  <div class="form-group">
+      <label>Czy otrzymanie wyników badania z oceną lekarską online uważa {{gender}} za równoważne
+            z otrzymaniem tych wyników w gabinecie lekarskim?</label>
+        <select name="test_results"  class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
+      <label>Czy uważa {{gender}} wizytę online za równoważną z wizytą w gabinecie lekarskim?</label>
+        <select name="visit" class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
+      <label>Czy {{subject4}} {{gender}} komputerowi do dozowania leków?</label>
+        <select name="computer" class="form-control">
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+        </select>
+      <label>Które z poniższych zdań najepiej określa {{gender}} stosunek do nowych technologii w medycynie?</label>
+        <select name="attitude" class="form-control">
+            <option value="like">Jestem {{subject5}} na nowe technologie i chętnie korzystam</option>
+            <option value="concerns">Mam obawy, ale mogę skorzystać, jeśli inni też skorzystają</option>
+            <option value="dislike">Nie ufam nowym technologiom, wolę tradycyjne metody leczenia</option>
+        </select>
+  </div>
+    <button type="submit" class="btn btn-primary">Przejdź dalej</button>
+</form>
+
+{% endblock %}

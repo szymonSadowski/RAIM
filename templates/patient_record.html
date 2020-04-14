@@ -1,8 +1,22 @@
 {% extends 'base.html' %}
-{% set active_page = 'patient' %}
+{% set active_page = 'ankieta' %}
 {% block title %} {% endblock %}
 
 {% block content %}
+ {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class = flashes>
+      {% for message in messages %}
+          <div class="alert alert-warning alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              {{message}}
+          </div>
+      {% endfor %}
+    </ul>
+    {% endif %}
+ {% endwith %}
 <form method="POST" action="{{ url_for('patient_record') }}">
   <div class="form-group">
       <label>Czy w ostatnim czasie {{gender}} lub ktoś z bliskiej rodziny wymagał hospitalizacji?</label>

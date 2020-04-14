@@ -1,16 +1,30 @@
 {% extends 'base.html' %}
 {% set active_page ='home' %}
 {% block content %}
-    <h1> Wstęp </h1>
+    <h1> Witamy w naszej ankiecie ! </h1>
 
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <div class="panel panel-default">
+ {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class = flashes>
+      {% for message in messages %}
+          <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              {{message}}
+          </div>
+      {% endfor %}
+    </ul>
+    {% endif %}
+ {% endwith %}
   <div class="panel-heading">
 
       <div class="panel-body">
           <p>
-         Szanowni Państwo,
+              Szanowni Państwo,
         Jesteśmy studentami Inżynierii Biomedycznej na wydziale Elektroniki, Telekomunikacji i Informatyki Politechniki Gdańskiej. W ramach projektu studenckiego, chcielibyśmy zachęcić Państwa do wypełnienia stworzonej przez nas ankiety, której celem jest zgromadzenie informacji na temat gotowości społeczeństwa na innowacje technologiczne w medycynie. Pytania dotyczą m.in. postrzegania wykorzystania robotów w medycynie oraz świadczenia usług w ramach telemedycyny.
         Ankieta jest całkowicie anonimowa, a jej wypełnienie zajmie Państwu kilka minut.
         Dziękujemy za poświęcony czas! :)

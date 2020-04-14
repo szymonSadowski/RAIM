@@ -3,38 +3,33 @@
 {% block title %} {% endblock %}
 
 {% block content %}
-<form method="POST" action="{{ url_for('patient_topic') }}">
+<form method="POST" action="{{ url_for('doctor_topic') }}">
   <div class="form-group">
       <label>Z jakiego rodzaju usług telemedycyny {{subject3}} {{gender}}? (Pytanie wielokrotnego wyboru)</label>
         <select name="type_telemedicine" multiple class="form-control">
             <option value="diagnosis">Postawienie diagnozy</option>
             <option value="consultation_survey">Skonsultowanie wyników badań</option>
-            <option value="prescription">Prośba o receptę</option>
+            <option value="prescription">Wystawienie recepty</option>
             <option value="tel_advice">Teleporada</option>
             <option value="tel_rehabilitation">Telerehabilitacja</option>
             <option value="other">Inne</option>
         </select>
-      <label>W jaki sposób {{subject3}} {{gender}} z usług telemedycyny? (Pytanie wielokrotnego wyboru)</label>
+      <label>W jaki sposób {{subject3}} {{gender}} z usług telemedycyny?  (Pytanie wielokrotnego wyboru)</label>
         <select name="how_telemedicine" multiple class="form-control">
             <option value="phone">Rozmowa telefoniczna</option>
             <option value="videoconference">Wideokonferencja</option>
             <option value="email">Wiadomość e-mail</option>
-            <option value="chat">Czat z lekarzem</option>
+            <option value="chat">Czat z pacjentem</option>
             <option value="other">Inne</option>
         </select>
-      <label>Czy otrzymanie przez {{gender}} wyników badania z oceną lekarską online uważa {{gender}} za równoważne
+      <label>Czy przekazanie wyników badania z oceną lekarską online uważa {{gender}} za równoważne
             z przedstawieniem tych wyników w gabinecie lekarskim?</label>
-        <select name="test_results"  class="form-control">
+        <select name="test_results" class="form-control">
             <option value="yes">Tak</option>
             <option value="no">Nie</option>
         </select>
       <label>Czy uważa {{gender}} wizytę online za równoważną z wizytą w gabinecie lekarskim?</label>
         <select name="visit" class="form-control">
-            <option value="yes">Tak</option>
-            <option value="no">Nie</option>
-        </select>
-      <label>Czy {{subject4}} {{gender}} komputerowi do dozowania leków?</label>
-        <select name="computer" class="form-control">
             <option value="yes">Tak</option>
             <option value="no">Nie</option>
         </select>
@@ -45,7 +40,8 @@
             <option value="dislike">Nie ufam nowym technologiom, wolę tradycyjne metody leczenia</option>
         </select>
   </div>
-    <button type="submit" class="btn btn-primary">Przejdź dalej</button>
+    <button type="submit" class="btn btn-primary" action="{{url_for('doctor_end')}}">Przejdź dalej</button>
 </form>
+
 
 {% endblock %}

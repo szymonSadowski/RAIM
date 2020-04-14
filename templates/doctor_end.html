@@ -3,18 +3,18 @@
 {% block title %} {% endblock %}
 
 {% block content %}
-<form method="POST" action="{{ url_for('patient_end') }}">
+<form method="POST" action="{{ url_for('doctor_end') }}">
   <div class="form-group">
-      <label>Dlaczego {{subject5}} się {{gender}} na korzystanie z nowych technologii? (Pytanie wielokrotnego wyboru)</label>
+      <label>Dlaczego {{subject6}} się {{gender}} na korzystanie z nowych technologii?  (Pytanie wielokrotnego wyboru)</label>
         <select name="why" multiple class="form-control">
             <option value="fast_diagnosis">Szybka i trafna diagnoza</option>
-            <option value="fast_access">Łatwy i szybki dostęp do usług medycznych</option>
-            <option value="trust">Brak zaufania do lekarzy i ich kompetencji</option>
+            <option value="fast_access">Łatwy i szybki dostęp do świadczenia usług medycznych</option>
+            <option value="comfort">Komfort pracy</option>
             <option value="interest">Ciekawość zastosowania nowych technologii</option>
             <option value="other">Inne</option>
         </select>
   </div>
-    <button type="submit" class="btn btn-primary">Zakończ</button>
+    <button type="submit" class="btn btn-primary" action="{{url_for('home')}}">Zakończ</button>
 </form>
 
 {% endblock %}

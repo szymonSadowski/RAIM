@@ -29,7 +29,8 @@ def patient():
        )
        conn.commit()
     # Redirect to some page
-       flash("Aby zaznaczyć więcej odpowiedzi wciśnij CTRL na klawiaturze")
+       flash("Aby zaznaczyć więcej niż jedną odpowiedź w pytaniach wielokrotnego wyboru - wciśnij i przytrzymaj CTRL "
+             "wybierając kolejne odpowiedzi")
        return redirect(url_for("patient_record"))
     return render_template("patient.html")
 
@@ -184,7 +185,8 @@ def doctor():
        )
         conn.commit()
     # Redirect to some page
-        flash("Aby zaznaczyć więcej odpowiedzi wciśnij CTRL na klawiaturze")
+        flash("Aby zaznaczyć więcej niż jedną odpowiedź w pytaniach wielokrotnego wyboru - wciśnij i przytrzymaj CTRL "
+              "wybierając kolejne odpowiedzi")
         return redirect(url_for("doctor_record"))
     return render_template("doctor.html")
 

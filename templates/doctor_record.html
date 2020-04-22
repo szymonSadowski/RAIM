@@ -20,7 +20,7 @@
 <form method="POST" action="{{ url_for('doctor_record') }}">
   <div class="form-group">
     <label>W jakich czynnościach mógłby wyręczyć {{gender}} robot?  (Pytanie wielokrotnego wyboru)</label>
-        <select name="activities_robot" multiple class="form-control">
+        <select name="activities_robot" multiple class="form-control" required>
             <option value="interview">Przeprowadzenie wywiadu przed rozpoczęciem leczenia</option>
             <option value="cosultation">Konsultacja diagnozy z lekarzem</option>
             <option value="survey">Wykonanie badań na zlecenie robota i sugerowanie leczenia</option>
@@ -52,7 +52,7 @@
             <option value="no">Nie</option>
         </select>
   </div>
-    <button type="submit" class="btn btn-primary" action="{{url_for('doctor_topic')}}">Przejdź dalej</button> <!--czy to jest potrzebne?-!>
+    <button type="submit" class="btn btn-primary" action="{{url_for('doctor_topic')}}">Przejdź dalej</button>
 </form>
 
 {% endblock %}

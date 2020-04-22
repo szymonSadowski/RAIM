@@ -6,6 +6,7 @@ conn = sqlite3.connect(db_abs_path)
 c = conn.cursor()
 
 c.execute("DROP TABLE IF EXISTS respondent")
+c.execute("DROP TABLE IF EXISTS respondent_doctor")
 c.execute("DROP TABLE IF EXISTS patient_record")
 c.execute("DROP TABLE IF EXISTS patient_topic")
 c.execute("DROP TABLE IF EXISTS patient_end")

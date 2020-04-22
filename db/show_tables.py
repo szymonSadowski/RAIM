@@ -3,7 +3,7 @@ import os
 
 db_abs_path = os.path.dirname(os.path.realpath(__file__)) + '/raim.db'
 print("Options: (respondent, patient_record, patient_topic, patient_end, respondent_doctor,"
-      " docotr_record, doctor_topic, doctor_end,  all)")
+      " doctor_record, doctor_topic, doctor_end,  all)")
 
 table = input("Show table: ")
 
@@ -18,7 +18,7 @@ def show_respondent():
                                     respondent AS c        
         """)
 
-        print("COMMENTS")
+        print("RESPONDENT")
         print("#############")
         for row in respondent:
             print("ID:             ", row[0]),
@@ -41,7 +41,7 @@ def show_patientRecord():
                                     patient_record AS c        
         """)
 
-        print("COMMENTS")
+        print("PATIENT RECORD")
         print("#############")
         for row in patient_record:
             print("ID:             ", row[0]),
@@ -68,7 +68,7 @@ def show_patientTopic():
                                      patient_topic AS c        
          """)
 
-        print("COMMENTS")
+        print("PATIENT TOPIC")
         print("#############")
         for row in patient_topic:
             print("ID:             ", row[0]),
@@ -92,7 +92,7 @@ def show_patientEnd():
                                     patient_end AS c        
         """)
 
-        print("COMMENTS")
+        print("PATIENT END")
         print("#############")
         for row in respondent:
             print("ID:             ", row[0]),
@@ -111,7 +111,7 @@ def show_respondentDoctor():
                                     respondent_doctor AS c        
         """)
 
-        print("COMMENTS")
+        print("RESPONDENT DOCTOR")
         print("#############")
         for row in respondent_doctor:
             print("ID:             ", row[0]),
@@ -133,7 +133,7 @@ def show_doctorRecord():
                                     doctor_record AS c        
         """)
 
-        print("COMMENTS")
+        print("DOCTOR RECORD")
         print("#############")
         for row in doctor_record:
             print("ID:             ", row[0]),
@@ -158,7 +158,7 @@ def show_doctorTopic():
                                      doctor_topic AS c        
          """)
 
-        print("COMMENTS")
+        print("DOCTOR TOPIC")
         print("#############")
         for row in doctor_topic:
             print("ID:             ", row[0]),
@@ -181,7 +181,7 @@ def show_doctorEnd():
                                     doctor_end AS c        
         """)
 
-        print("COMMENTS")
+        print("DOCTOR END")
         print("#############")
         for row in doctor_end:
             print("ID:             ", row[0]),

@@ -6,7 +6,7 @@
 <form method="POST" action="{{ url_for('patient_end') }}">
   <div class="form-group">
       <label>Dlaczego {{subject5}} się {{gender}} na korzystanie z nowych technologii? (Pytanie wielokrotnego wyboru)</label>
-        <select name="why" multiple class="form-control">
+        <select name="why" multiple class="form-control" required>
             <option value="fast_diagnosis">Szybka i trafna diagnoza</option>
             <option value="fast_access">Łatwy i szybki dostęp do usług medycznych</option>
             <option value="trust">Brak zaufania do lekarzy i ich kompetencji</option>
@@ -14,6 +14,8 @@
             <option value="other">Inne</option>
         </select>
   </div>
+    <div class="g-recaptcha" data-sitekey="6LdSL-wUAAAAAI59qEX-fdhvmr-cjXWSKsCExOhF"></div>
+</br>
     <button type="submit" class="btn btn-primary">Zakończ</button>
 </form>
 

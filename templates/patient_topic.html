@@ -6,7 +6,7 @@
 <form method="POST" action="{{ url_for('patient_topic') }}">
   <div class="form-group">
       <label>Z jakiego rodzaju usług telemedycyny {{subject3}} {{gender}}? (Pytanie wielokrotnego wyboru)</label>
-        <select name="type_telemedicine" multiple class="form-control">
+        <select name="type_telemedicine" multiple class="form-control" required>
             <option value="diagnosis">Postawienie diagnozy</option>
             <option value="consultation_survey">Skonsultowanie wyników badań</option>
             <option value="prescription">Prośba o receptę</option>
@@ -15,14 +15,14 @@
             <option value="other">Inne</option>
         </select>
       <label>W jaki sposób {{subject3}} {{gender}} z usług telemedycyny? (Pytanie wielokrotnego wyboru)</label>
-        <select name="how_telemedicine" multiple class="form-control">
+        <select name="how_telemedicine" multiple class="form-control" required>
             <option value="phone">Rozmowa telefoniczna</option>
             <option value="videoconference">Wideokonferencja</option>
             <option value="email">Wiadomość e-mail</option>
             <option value="chat">Czat z lekarzem</option>
             <option value="other">Inne</option>
         </select>
-      <label>Czy otrzymanie przez {{gender}} wyników badania z oceną lekarską online uważa {{gender}} za równoważne
+      <label>Czy otrzymanie wyników badania z oceną lekarską online uważa {{gender}} za równoważne
             z przedstawieniem tych wyników w gabinecie lekarskim?</label>
         <select name="test_results"  class="form-control">
             <option value="yes">Tak</option>

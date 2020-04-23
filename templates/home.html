@@ -33,13 +33,14 @@
         Prosimy o wybranie poniżej opcji “pacjent” lub “lekarz” - pytania są dostosowane do wybranej grupy.
           </p>
         </div>
-   <form method="POST" action="{{ url_for('home') }}" enctype="multipart/form-data">
-   <div class="form-group">
-        {{ form.recaptcha }}
-   </div>
       <hr>
-   {{ form.submit(class="btn btn-primary form-control") }}
-  </form>
+       <form  action="{{ url_for('patient') }}">
+        <input class="btn btn-primary" type="submit" value="Pacjent">
+           <hr>
+      </form>
+      <form  action="{{ url_for('doctor') }}">
+        <input class="btn btn-primary " type="submit" value="Lekarz">
+      </form>
   </div>
 
 

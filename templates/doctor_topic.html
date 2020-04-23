@@ -5,7 +5,7 @@
 {% block content %}
 <form method="POST" action="{{ url_for('doctor_topic') }}">
   <div class="form-group">
-      <label>Z jakiego rodzaju usług telemedycyny {{subject3}} {{gender}}? (Pytanie wielokrotnego wyboru)</label>
+      <label>Z jakiego rodzaju usług telemedycyny {{gender}} {{subject3}}? (Pytanie wielokrotnego wyboru)</label>
         <select name="type_telemedicine" multiple class="form-control" required>
             <option value="diagnosis">Postawienie diagnozy</option>
             <option value="consultation_survey">Skonsultowanie wyników badań</option>

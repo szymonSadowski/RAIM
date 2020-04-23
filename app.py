@@ -1,27 +1,16 @@
 from flask import (Flask, render_template, request,redirect, url_for, g, flash)
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import SubmitField
+from wtforms import SubmitField,StringField
 import sqlite3
 
+from wtforms.validators import InputRequired, DataRequired, Length
 
 app = Flask(__name__)
 app.secret_key = 'bytes'
-app.config["RECAPTCHA_PUBLIC_KEY"] = "6LcptOwUAAAAAMp6juocQTyrGgVizgq27so4lFPS"
-app.config["RECAPTCHA_PRIVATE_KEY"] = "6LcptOwUAAAAAAK2KQlUvrd60EtplbBZEBXIEDog"
-
-class CaptchaForm(FlaskForm):
-    recaptcha = RecaptchaField()
-    submit = SubmitField("Pacjent")
 
 @app.route("/",methods=["GET", "POST"])
 def home():
-    form = CaptchaForm()
-    if request.method == "POST" and form.validate_on_submit():
-        return redirect(url_for("patient"))
-    else:
-        flash("Fix Captcha")
-
-    return render_template("home.html", form=form)
+    return render_template("home.html")
 
 
 @app.route("/patient", methods=["GET", "POST"] )
@@ -175,10 +164,10 @@ def patient_end():
 
     if gender == "male":
         return render_template("patient_end.html", gender="Pan", have="miał", subject="poddałby",
-                                   subject2="wyraziłby", subject3="korzystał", subject5="zdecydował", form=form)
+                                   subject2="wyraziłby", subject3="korzystał", subject5="zdecydował")
     elif gender == "female":
          return render_template("patient_end.html", gender="Pani", have="miała", subject="poddałaby",
-                                   subject2="wyraziłaby", subject4="korzystała", subject5="zdecydowała", form=form)
+                                   subject2="wyraziłaby", subject4="korzystała", subject5="zdecydowała")
 
 
 @app.route("/doctor", methods=["GET", "POST"])
@@ -233,9 +222,11 @@ def doctor_record():
             return redirect(url_for("doctor_topic_v2"))
 
     if gender == "male":
-        return render_template("doctor_record.html",gender="Pan",subject="zaufałby", subject2="zagrożony", subject3="korzystał")
+        return render_template("doctor_record.html",gender="Pan",subject="zaufałby", subject2="zagrożony",
+                               subject3="korzystał",subject4="Pana")
     elif gender =="female":
-        return render_template("doctor_record.html",gender="Pani",subject="zaufałaby", subject2="zagrożona", subject3="korzystała")
+        return render_template("doctor_record.html",gender="Pani",subject="zaufałaby", subject2="zagrożona",
+                               subject3="korzystała",subject4="Panią")
 
 
 @app.route("/doctor_topic", methods=["GET", "POST"])
@@ -303,7 +294,6 @@ def doctor_topic_v2():
 
 @app.route("/doctor_end", methods=["GET", "POST"])
 def doctor_end():
-    form = Form()
     conn = get_db()
     c = conn.cursor()
     id = get_Doctorid()
@@ -322,9 +312,9 @@ def doctor_end():
         flash("Dziękujemy za wypełnienie naszej ankiety ! ")
         return redirect(url_for("home"))
     if gender == "male":
-        return render_template("doctor_end.html", gender="Pan", have="miał", subject6="zdecydował", form=form)
+        return render_template("doctor_end.html", gender="Pan", have="miał", subject6="zdecydował")
     elif gender == "female":
-         return render_template("doctor_end.html", gender="Pani", have="miała", subject6="zdecydowała", form=form)
+         return render_template("doctor_end.html", gender="Pani", have="miała", subject6="zdecydowała")
 
 @app.errorhandler(404)
 def page_not_found(e):

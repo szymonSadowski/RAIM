@@ -101,11 +101,12 @@ def patient_topic():
             return redirect(url_for("home"))
     if gender == "male":
         return render_template("patient_topic.html", gender="Pan", have="miał", subject="poddałby",
-                                   subject2="wyraziłby", subject3="korzystał", subject4="zaufałby", subject5="otwarty")
+                                   subject2="wyraziłby", subject3="korzystał", subject4="zaufałby", subject5="otwarty",
+                               subject6="Pana")
     elif gender == "female":
         return render_template("patient_topic.html", gender="Pani", have="miała", subject="poddałaby",
-                                   subject2="wyraziłaby", subject3="korzystała", subject4="zaufałaby", subject5="otwarta")
-
+                                   subject2="wyraziłaby", subject3="korzystała", subject4="zaufałaby", subject5="otwarta",
+                               subject6="Pani")
 
 @app.route("/patient_topic_v2", methods=["GET" , "POST"])
 def patient_topic_v2():

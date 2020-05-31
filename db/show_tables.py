@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-db_abs_path = os.path.dirname(os.path.realpath(__file__)) + '/raim.db'
+db_abs_path = os.path.dirname(os.path.realpath(__file__)) + '/home/medicalSurveyRAIM/mysite/db//raim.db'
 print("Options: (respondent, patient_record, patient_topic, patient_end, respondent_doctor,"
       " doctor_record, doctor_topic, doctor_end,  all)")
 
@@ -15,7 +15,7 @@ def show_respondent():
         respondent = c.execute("""SELECT
                                     c.id, c.gender, c.age, c.edu , c.city, c.politics
                                  FROM
-                                    respondent AS c        
+                                    respondent AS c
         """)
 
         print("RESPONDENT")
@@ -38,7 +38,7 @@ def show_patientRecord():
                                     c.id, c.hospitalization, c.drugs, c.operation , c.health_service, c.operation_robot,
                                     c.activities_robot, c.disadvantage, c.telemedicine
                                  FROM
-                                    patient_record AS c        
+                                    patient_record AS c
         """)
 
         print("PATIENT RECORD")
@@ -62,10 +62,10 @@ def show_patientRecord():
 def show_patientTopic():
     try:
         patient_topic = c.execute("""SELECT
-                                     c.id, c.type_telemedicine, c.how_telemedicine, c.test_results, c.visit, 
+                                     c.id, c.type_telemedicine, c.how_telemedicine, c.test_results, c.visit,
                                      c.computer, c.attitude, c.respondent_id
                                   FROM
-                                     patient_topic AS c        
+                                     patient_topic AS c
          """)
 
         print("PATIENT TOPIC")
@@ -89,7 +89,7 @@ def show_patientEnd():
         respondent = c.execute("""SELECT
                                     c.id, c.why, c.respondent_id
                                  FROM
-                                    patient_end AS c        
+                                    patient_end AS c
         """)
 
         print("PATIENT END")
@@ -108,7 +108,7 @@ def show_respondentDoctor():
         respondent_doctor = c.execute("""SELECT
                                     c.id, c.gender, c.age, c.city, c.politics
                                  FROM
-                                    respondent_doctor AS c        
+                                    respondent_doctor AS c
         """)
 
         print("RESPONDENT DOCTOR")
@@ -127,10 +127,10 @@ def show_respondentDoctor():
 def show_doctorRecord():
     try:
         doctor_record = c.execute("""SELECT
-                                    c.id, c.activities_robot, c.computer, c.disadvantage, c.job, c.telemedicine, 
+                                    c.id, c.activities_robot, c.computer, c.disadvantage, c.job, c.telemedicine,
                                     c.respondent_doctor_id
                                  FROM
-                                    doctor_record AS c        
+                                    doctor_record AS c
         """)
 
         print("DOCTOR RECORD")
@@ -152,10 +152,10 @@ def show_doctorRecord():
 def show_doctorTopic():
     try:
         doctor_topic = c.execute("""SELECT
-                                     c.id, c.type_telemedicine, c.how_telemedicine, c.test_results, c.visit, 
+                                     c.id, c.type_telemedicine, c.how_telemedicine, c.test_results, c.visit,
                                      c.attitude, c.respondent_doctor_id
                                   FROM
-                                     doctor_topic AS c        
+                                     doctor_topic AS c
          """)
 
         print("DOCTOR TOPIC")
@@ -178,7 +178,7 @@ def show_doctorEnd():
         doctor_end = c.execute("""SELECT
                                     c.id, c.why, c.respondent_doctor_id
                                  FROM
-                                    doctor_end AS c        
+                                    doctor_end AS c
         """)
 
         print("DOCTOR END")

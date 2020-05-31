@@ -101,12 +101,11 @@ def patient_topic():
             return redirect(url_for("home"))
     if gender == "male":
         return render_template("patient_topic.html", gender="Pan", have="miał", subject="poddałby",
-                                   subject2="wyraziłby", subject3="korzystał", subject4="zaufałby", subject5="otwarty",
-                               subject6="Pana")
+                                   subject2="wyraziłby", subject3="korzystał", subject4="zaufałby", subject5="otwarty",subject6="Pana")
     elif gender == "female":
         return render_template("patient_topic.html", gender="Pani", have="miała", subject="poddałaby",
-                                   subject2="wyraziłaby", subject3="korzystała", subject4="zaufałaby", subject5="otwarta",
-                               subject6="Pani")
+                                   subject2="wyraziłaby", subject3="korzystała", subject4="zaufałaby", subject5="otwarta",subject6="Pani")
+
 
 @app.route("/patient_topic_v2", methods=["GET" , "POST"])
 def patient_topic_v2():
@@ -136,10 +135,10 @@ def patient_topic_v2():
             return redirect(url_for("home"))
     if gender == "male":
         return render_template("patient_topic_v2.html", gender="Pan", have="miał", subject="poddałby",
-                                   subject2="wyraziłby", subject3="korzystał", subject4="zaufałby", subject5="otwarty")
+                                   subject2="wyraziłby", subject3="korzystał", subject4="zaufałby", subject5="otwarty",subject6="Pana")
     elif gender == "female":
         return render_template("patient_topic_v2.html", gender="Pani", have="miała", subject="poddałaby",
-                                   subject2="wyraziłaby", subject3="korzystała", subject4="zaufałaby", subject5="otwarta")
+                                   subject2="wyraziłaby", subject3="korzystała", subject4="zaufałaby", subject5="otwarta",subject6="Pani")
 
 
 @app.route("/patient_end", methods=["GET" , "POST"])
@@ -223,11 +222,9 @@ def doctor_record():
             return redirect(url_for("doctor_topic_v2"))
 
     if gender == "male":
-        return render_template("doctor_record.html",gender="Pan",subject="zaufałby", subject2="zagrożony",
-                               subject3="korzystał",subject4="Pana")
+        return render_template("doctor_record.html",gender="Pan",subject="zaufałby", subject2="zagrożony", subject3="korzystał",subject4="Pana")
     elif gender =="female":
-        return render_template("doctor_record.html",gender="Pani",subject="zaufałaby", subject2="zagrożona",
-                               subject3="korzystała",subject4="Panią")
+        return render_template("doctor_record.html",gender="Pani",subject="zaufałaby", subject2="zagrożona", subject3="korzystała", subject4="Panią")
 
 
 @app.route("/doctor_topic", methods=["GET", "POST"])
@@ -258,9 +255,9 @@ def doctor_topic():
             flash("Dziękujemy za wypełnienie naszej ankiety ! ")
             return redirect(url_for("home"))
     if gender == "male":
-        return render_template("doctor_topic.html", gender="Pan", have="miał", subject3="korzystał", subject5="otwarty")
+        return render_template("doctor_topic.html", gender="Pan", have="miał", subject3="korzystał", subject5="otwarty",subject6="Pana")
     elif gender == "female":
-        return render_template("doctor_topic.html", gender="Pani", have="miała", subject3="korzystała", subject5="otwarta")
+        return render_template("doctor_topic.html", gender="Pani", have="miała", subject3="korzystała", subject5="otwarta",subject6="Pani")
 
 
 @app.route("/doctor_topic_v2", methods=["GET", "POST"])
@@ -288,9 +285,9 @@ def doctor_topic_v2():
             flash("Dziękujemy za wypełnienie naszej ankiety ! ")
             return redirect(url_for("home"))
     if gender == "male":
-        return render_template("doctor_topic_v2.html", gender="Pan", have="miał", subject5="otwarty")
+        return render_template("doctor_topic_v2.html", gender="Pan", have="miał", subject5="otwarty",subject6="Pana")
     elif gender == "female":
-        return render_template("doctor_topic_v2.html", gender="Pani", have="miała", subject5="otwarta")
+        return render_template("doctor_topic_v2.html", gender="Pani", have="miała", subject5="otwarta",subject6="Pani")
 
 
 @app.route("/doctor_end", methods=["GET", "POST"])
@@ -324,7 +321,7 @@ def page_not_found(e):
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
-        db = g._database = sqlite3.connect('db/raim.db')
+        db = g._database = sqlite3.connect('/home/medicalSurveyRAIM/mysite/db/raim.db')
     return db
 
 def get_id():
